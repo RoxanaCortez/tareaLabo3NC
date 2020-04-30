@@ -36,9 +36,25 @@ public class ProductController {
 	}
 	
 	@PostMapping("/validar")
-	@ResponseBody
-	public String validar(Product product) { //Retorna producto seleccionado con su respectiva cantidad
-		return productos.get(product.getId()).getNombre() + "\n" + productos.get(product.getId()).getCantidad(); 
+	public ModelAndView validar(Product product) {
+		ModelAndView mav = new ModelAndView();
+		
+		Integer cantIngresada = product.getCantidad(); // Cantidad de producto solicitada
+		Integer cantidad = productos.get(product.getId()).getCantidad(); //Cantidad del producto en stock
+		String nombreProducto = productos.get(product.getId()).getNombre(); //Nombre del producto
+		String mensajeError = "El producto " + "<strong>" + nombreProducto + "</strong>" + " no se puede adquirir.";
+		String mensajeCompra = "El producto " + "<strong>" + nombreProducto + "</strong>" + " se adquirió.";
+		
+		if(cantidad == cantIngresada) {
+			System.out.println(cantidad);
+			mav.addObject("fallo", mensajeError);
+			mav.setViewName("error");
+		}else {
+			mav.addObject("adquirido", mensajeCompra);
+			mav.setViewName("compra");
+		}
+		
+		return mav;
 	}
 	
 

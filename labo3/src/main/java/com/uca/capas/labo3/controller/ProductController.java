@@ -45,7 +45,7 @@ public class ProductController {
 		String mensajeError = "El producto " + "<strong>" + nombreProducto + "</strong>" + " no se puede adquirir.";
 		String mensajeCompra = "El producto " + "<strong>" + nombreProducto + "</strong>" + " se adquirió.";
 		
-		if(cantidad == cantIngresada) {
+		if(cantidad != cantIngresada) {
 			System.out.println(cantidad);
 			mav.addObject("fallo", mensajeError);
 			mav.setViewName("error");

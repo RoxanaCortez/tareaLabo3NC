@@ -45,16 +45,14 @@ public class ProductController {
 		String mensajeError = "El producto " + "<strong>" + nombreProducto + "</strong>" + " no se puede adquirir.";
 		String mensajeCompra = "El producto " + "<strong>" + nombreProducto + "</strong>" + " se adquirió.";
 		
-		if(cantIngresada > cantidad || cantIngresada < 1) {
+		if(cantIngresada > cantidad || cantIngresada < 1) { 
 			mav.addObject("fallo", mensajeError);
 			mav.setViewName("error");
 		}else {
 			mav.addObject("adquirido", mensajeCompra);
 			mav.setViewName("compra");
 		}
-		return mav;
-		
-		
+		return mav;	
 	}
 
 }
